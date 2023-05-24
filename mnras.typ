@@ -22,10 +22,20 @@
        auth_to_affils.at(names.at(-1)).push(str(affil_to_num.at(val.name)))
     }
   }
-  let names = names.map(n => {
+ // names.at(0) = names.at(0) + footnote(numbering: "*", "email@email.edu")
+ let emails = s.map(n => {
+      footnote(numbering: "*", n.email)
+ })
+ let names = names.map(n => {
     let a = auth_to_affils.at(n)
+
     n + super(a.join(","))
+    if n == names.at(0) {
+      emails.at(0)
+    }
+    
   })
+  
 
  block(text(weight: 500, 1.3em, names.join(", ")))
  par(justify: false, leading: 0.2em)[
